@@ -241,4 +241,4 @@ user temi doesnt have a home directory
 
 ## Screenshot 13
 
-![Alt text](Images/screenshot25.png)
+![Alt text](Images/Screenshot25.png)
