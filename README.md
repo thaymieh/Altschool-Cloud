@@ -6,13 +6,14 @@
 user creation and permission
 
 
-
+Note, if you want to transition from a user environment you've created to a superuser environment, simply use the "exit" command.
 
 ## task 1
 
 create a user
 
 to create a user you use this command
+
 This presupposes that you have either logged into your Linux server or established an SSH connection to your Ubuntu server.
 
 
@@ -194,6 +195,8 @@ it should show this :
 
 ![Alt text](Images/Screenshot14.png)
 P.S
+Screenshot below 
+
 This was before the user was attached to the group,just to show that the configuration change worked
 
 ## Screenshot 11
@@ -230,7 +233,7 @@ to confirm this
 run this command :
 
 ```bash
- sudo ls -al /home
+ sudo ls /home
 
 ```
 
@@ -238,4 +241,4 @@ user temi doesnt have a home directory
 
 ## Screenshot 13
 
-![Alt text](Images/screenshot21.png)
+![Alt text](Images/screenshot25.png)
