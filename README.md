@@ -43,7 +43,7 @@ Adding a password for the user
 
 ## Screenshot 1b
 
-![Alt text](images/Screenshot 2023-08-18 at 16.06.25.png "screenshot ")
+![Alt text](Images/Screenshot20.png)
 
 
 ```
@@ -58,7 +58,7 @@ run the following command
 
 ## Screenshot 2
 
-![Alt text](images/Screenshot 2023-08-18 at 16.07.02.png "screenshot")
+![Alt text](Images/screenshot2.png)
 
 Explanation
 
@@ -77,7 +77,7 @@ To confirm that the change worked,Run this
 
 ## Screenshot 3
 
-![Alt text](images/Screenshot 2023-08-18 at 17.43.39.png "screenshot")
+![Alt text](Images/Screenshot6.png)
 
 ## question 3
 
@@ -92,7 +92,7 @@ run the following command
 
 ## Screenshot 4
 
-![Alt text](images/Screenshot 2023-08-18 at 16.09.25.png "screenshot")
+![Alt text](Images/Screenshot3.png)
 
 explanation :
 
@@ -109,7 +109,7 @@ switch to the user created by running this command
 
 ## Screenshot 5
 
-![Alt text](images/Screenshot 2023-08-18 at 16.10.00.png "Optional Title")
+![Alt text]Images/Screenshot8.png)
 
 here it prompts the user to change password
 ## question 4
@@ -126,7 +126,7 @@ first create the group altschool
 ```
 ## Screenshot 5
 
-![Alt text](images/Screenshot%202023-08-18%20at%2017.51.24.png)
+![Alt text](Images/Screenshot10.png)
 
 
 attach the user
@@ -138,7 +138,7 @@ attach the user
 
 ## Screenshot 6
 
-![Alt text](images/Screenshot 2023-08-18 at 17.51.46.png "Optional Title")
+![Alt text](Images/Screenshot5.png)
 
 to confirm,run this
 
@@ -149,7 +149,7 @@ to confirm,run this
 
 ## Screenshot 7
 
-![Alt text](Images/Screenshot 2023-08-18 at 17.52.04.png"Optional Title")
+![Alt text](Images/Screenshot9.png)
 
 to allow group to run cat command
 
@@ -159,7 +159,7 @@ to allow group to run cat command
 ```
 ## Screenshot 8
 
-![Alt text](Images/Screenshot 2023-08-18 at 17.32.21.png"Optional Title")
+![Alt text](Images/Screenshot11.png)
 
 add this rule
 
@@ -171,7 +171,7 @@ add this rule
 
 ## Screenshot 9
 
-![Alt text](Images/Screenshot 2023-08-18 at 17.52.26.png "Optional Title")
+![Alt text](Images/Screenshot13.png)
 
 Explanation :
 
@@ -192,13 +192,13 @@ it should show this :
 
 ## Screenshot 10
 
-![Alt text](images/Screenshot 2023-08-18 at 17.53.22.png "Optional Title")
+![Alt text](Images/Screenshot14.png)
 P.S
 This was before the user was attached to the group,just to show that the configuration change worked
 
 ## Screenshot 11
 
-![Alt text](images/Screenshot 2023-08-18 at 17.36.03.png "Optional Title")
+![Alt text](Images/Screenshot15.png)
 
 
 
@@ -215,15 +215,15 @@ run this command
 
 ```
 
-## Screenshot 12
+## Screenshot 11
 
-![Alt text](images/Screenshot 2023-08-18 at 17.54.30.png "Optional Title")
+![Alt text](Images/secrenshot1.png)
 
 add a password
 
 ## Screenshot 12
 
-![Alt text](images/Screenshot 2023-08-18 at 17.54.43.png "Optional Title")
+![Alt text](Images/Screenshot16.png)
 
 to confirm this
 
@@ -236,6 +236,6 @@ run this command :
 
 user temi doesnt have a home directory
 
-## Screenshot 1
+## Screenshot 13
 
-![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+![Alt text](Images/screenshot21.png)
