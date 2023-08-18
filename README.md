@@ -31,7 +31,7 @@ Note: you are creating user with access to the home directory
 
 ## Screenshot 1
 
-![Alt text](images/Screenshot 2023-08-18 at 17.42.08.png "screenshot 1")
+![Alt text](Images/Screenshot7.png)
 
 
 Adding a password for the user
