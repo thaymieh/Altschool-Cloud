@@ -46,7 +46,7 @@ Adding a password for the user
 ![Alt text](Images/Screenshot20.png)
 
 
-```
+
 ## task 2
 set an expiry date of 2weeks for the user
 
@@ -79,7 +79,7 @@ To confirm that the change worked,Run this
 
 ![Alt text](Images/Screenshot6.png)
 
-## question 3
+## task 3
 
 prompt the user to change there password on login
 
@@ -112,7 +112,7 @@ switch to the user created by running this command
 ![Alt text]Images/Screenshot8.png)
 
 here it prompts the user to change password
-## question 4
+## task 4
 
 attach the user to a group called altschool
 allow altschool group to be able to run only cat command on /etc/
@@ -204,7 +204,7 @@ This was before the user was attached to the group,just to show that the configu
 
 
 
-## question 5
+## task 5
 
 create another user. make sure that this user doesn't have a home directory.
 
