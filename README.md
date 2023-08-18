@@ -109,7 +109,7 @@ switch to the user created by running this command
 
 ## Screenshot 5
 
-![Alt text]Images/Screenshot8.png)
+![Alt text](Images/Screenshot8.png)
 
 here it prompts the user to change password
 ## task 4
