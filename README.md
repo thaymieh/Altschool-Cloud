@@ -126,7 +126,8 @@ first create the group altschool
 ```
 ## Screenshot 5
 
-![Alt text]("images/Screenshot 2023-08-18 at 17.51.24.png")
+![Alt text](images/Screenshot%202023-08-18%20at%2017.51.24.png)
+
 
 attach the user
 
