@@ -70,3 +70,33 @@ vagrant ssh slave -c "sudo systemctl start apache2"
 vagrant ssh master -c "sudo -u altschool cp -r /mnt/altschool/. /tmp/altschool"
 vagrant ssh master -c "sudo -u altschool scp -o StrictHostKeyChecking=no -r /tmp/altschool altschool@slave:/mnt/altschool/"
 vagrant ssh master -c "rm -r /tmp/altschool"
+
+
+
+
+
+
+
+#!/bin/bash
+
+# Script to set up passwordless SSH from master to slave
+
+# Generate SSH key pair on master
+vagrant ssh master -c "sudo -u altschool ssh-keygen -t rsa -b 4096 -N '' -f /home/altschool/.ssh/id_rsa"
+
+# Create altschool user on slave
+vagrant ssh slave -c "sudo useradd -m -s /bin/bash altschool"
+vagrant ssh slave -c "sudo mkdir -p /home/altschool/.ssh && sudo touch /home/altschool/.ssh/authorized_keys"
+
+# Copy public key from master to slave
+vagrant ssh master -c "sudo -u altschool cat /home/altschool/.ssh/id_rsa.pub" | vagrant ssh slave -c "sudo -u altschool sh -c 'cat >> /home/altschool/.ssh/authorized_keys'"
+
+# Set proper permissions on master
+vagrant ssh master -c "sudo chown -R altschool:altschool /home/altschool/.ssh && sudo chmod 700 /home/altschool/.ssh && sudo chmod 600 /home/altschool/.ssh/id_rsa"
+
+# Set proper permissions on slave
+vagrant ssh slave -c "sudo chown -R altschool:altschool /home/altschool/.ssh && sudo chmod 700 /home/altschool/.ssh && sudo chmod 600 /home/altschool/.ssh/authorized_keys"
+
+# Test SSH connection from master to slave
+vagrant ssh master -c "sudo -u altschool ssh altschool@slave"
+
