@@ -56,10 +56,11 @@ Enable SSH key-based authentication:
 The Master node (altschool user) should seamlessly SSH into the Slave node without requiring a password.
 
 ```bash
+# Generate SSH key pair for 'altschool' on master
 vagrant ssh master -c "sudo -u altschool ssh-keygen -t rsa -b 4096 -N '' -f /home/altschool/.ssh/id_rsa"
-vagrant ssh master -c "sudo -u altschool ssh-copy-id -i /home/altschool/.ssh/id_rsa altschool@slave"
-vagrant ssh master -c "sudo -u altschool ssh altschool@slave"
-vagrant ssh master -c "sudo -u altschool ls -la /home/altschool/.ssh/"
+# Copy public key to the slave node
+vagrant ssh slave -c "sudo mkdir -p /home/altschool/.ssh && sudo touch /home/altschool/.ssh/authorized_keys"
+vagrant ssh master -c "sudo -u altschool cat /home/altschool/.ssh/id_rsa.pub" | vagrant ssh slave -c "sudo -u altschool tee -a /home/altschool/.ssh/authorized_keys"
 ```
 
 
