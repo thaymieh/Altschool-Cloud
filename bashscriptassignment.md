@@ -50,6 +50,19 @@ vagrant ssh master -c  "echo -e 'y\nyour_password\nyour_password\ny\ny\ny\n\ny' 
 vagrant ssh master -c "sudo systemctl enable apache2"
 vagrant ssh master -c "sudo systemctl start apache2"
 
+#!/bin/bash
+
+# ... (previous script content)
+
+# Validate PHP functionality with Apache on master
+vagrant ssh master -c "echo '<?php phpinfo(); ?>' | sudo tee /var/www/html/info.php"
+
+# Validate PHP functionality with Apache on slave
+vagrant ssh slave -c "echo '<?php phpinfo(); ?>' | sudo tee /var/www/html/info.php"
+
+# ... (remaining script content)
+
+
 # Generate SSH key pair for 'altschool' on master
 vagrant ssh master -c "sudo -u altschool ssh-keygen -t rsa -b 4096 -N '' -f /home/altschool/.ssh/id_rsa"
 vagrant ssh master -c "sudo -u altschool ssh-keyscan -H slave >> /home/altschool/.ssh/known_hosts"
