@@ -88,7 +88,7 @@ Process Monitoring:
 The Master node should display an overview of the Linux process management, showcasing currently running processes.
 
 ```bash
-  sudo useradd -m alade
+  vagrant ssh master -c "htop"
 ```
 
 ## Task 6
