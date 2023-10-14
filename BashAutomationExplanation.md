@@ -76,9 +76,9 @@ On initiation:
 Copy the contents of /mnt/altschool directory from the Master node to /mnt/altschool/slave on the Slave node. This operation should be performed using the altschool user from the Master node.
 
 ```bash
-  vagrant ssh master -c "sudo -u altschool ssh-keygen -t rsa -b 4096 -N '' -f /home/altschool/.ssh/id_rsa"
-vagrant ssh master -c "sudo -u altschool ssh-keyscan -H slave >> /home/altschool/.ssh/known_hosts"
-vagrant ssh master -c "sudo -u altschool ssh-copy-id altschool@slave"
+vagrant ssh master -c "sudo -u altschool cp -r /mnt/altschool/. /tmp/altschool"
+vagrant ssh master -c "sudo -u altschool scp -o StrictHostKeyChecking=no -r /tmp/altschool altschool@slave:/mnt/altschool/"
+vagrant ssh master -c "rm -r /tmp/altschool"
 ```
 
 ## Task 5
