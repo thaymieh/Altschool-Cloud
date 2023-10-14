@@ -5,6 +5,7 @@ Deploy two Ubuntu systems:
 Master Node: This node should be capable of acting as a control system.
 Slave Node: This node will be managed by the Master node.
 
+
 ```bash
 # Master node
   config.vm.define "master" do |master|
@@ -27,6 +28,13 @@ Slave Node: This node will be managed by the Master node.
   end
 end
 ```
+above is the vagrant file configuration
+
+
+```bash
+  vagrant up
+```
+
 
 ## Task 2
 
@@ -49,9 +57,12 @@ The Master node (altschool user) should seamlessly SSH into the Slave node witho
 
 ```bash
 vagrant ssh master -c "sudo -u altschool ssh-keygen -t rsa -b 4096 -N '' -f /home/altschool/.ssh/id_rsa"
-vagrant ssh master -c "sudo -u altschool ssh-keyscan -H slave >> /home/altschool/.ssh/known_hosts"
-vagrant ssh master -c "sudo -u altschool ssh-copy-id altschool@slave"
+vagrant ssh master -c "sudo -u altschool mkdir -p /home/altschool/.ssh && sudo -u altschool touch /home/altschool/.ssh/known_hosts"
+vagrant ssh master -c "sudo -u altschool ssh-keyscan -H slave | sudo -u altschool tee -a /home/altschool/.ssh/known_hosts"
+vagrant ssh master -c "sudo -u altschool ssh-copy-id -i /home/altschool/.ssh/id_rsa altschool@slave"
 ```
+
+
 
 ## Task 4
 
