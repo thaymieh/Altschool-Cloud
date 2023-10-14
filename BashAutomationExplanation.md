@@ -58,8 +58,12 @@ The Master node (altschool user) should seamlessly SSH into the Slave node witho
 ```bash
 # Generate SSH key pair for 'altschool' on master
 vagrant ssh master -c "sudo -u altschool ssh-keygen -t rsa -b 4096 -N '' -f /home/altschool/.ssh/id_rsa"
-# Copy public key to the slave node
+
+# Create 'altschool' user on slave
+vagrant ssh slave -c "sudo useradd -m -s /bin/bash altschool"
 vagrant ssh slave -c "sudo mkdir -p /home/altschool/.ssh && sudo touch /home/altschool/.ssh/authorized_keys"
+
+# Copy public key to the slave node
 vagrant ssh master -c "sudo -u altschool cat /home/altschool/.ssh/id_rsa.pub" | vagrant ssh slave -c "sudo -u altschool tee -a /home/altschool/.ssh/authorized_keys"
 ```
 
