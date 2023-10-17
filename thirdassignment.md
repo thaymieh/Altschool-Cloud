@@ -284,9 +284,11 @@ The host file of the machine(/etc/hosts) was also edited to create a DNS to acce
 
 ![Alt text](Images/task6-4.png
 
+
+
 for the full script 
 
-[Go to Another Page](./bashscriptassignment.md)
+[FullBashScript](./bashscriptassignment.md)
 
 
 
