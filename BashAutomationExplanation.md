@@ -269,7 +269,7 @@ The host file of the machine(/etc/hosts) was also edited to create a DNS to acce
 
 ## Screenshot 6
 
-![Alt text]("Images/task6.png")
+![Alt text](Images/task6.png)
 
 ## Screenshot 6.1
 
