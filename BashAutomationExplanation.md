@@ -7,26 +7,7 @@ Slave Node: This node will be managed by the Master node.
 
 
 ```bash
-# Master node
-  config.vm.define "master" do |master|
-    master.vm.provider "virtualbox" do |vb|
-      vb.memory = "512"
-    end
-
-    # Use a unique host port for SSH forwarding on the master machine
-    master.vm.network :forwarded_port, guest: 22, host: 2222
-  end
-
-  # Slave node
-  config.vm.define "slave" do |slave|
-    slave.vm.provider "virtualbox" do |vb|
-      vb.memory = "512"
-    end
-
-    # Use another unique host port for SSH forwarding on the slave machine
-    slave.vm.network :forwarded_port, guest: 22, host: 2223
-  end
-endVagrant.configure("2") do |config|
+Vagrant.configure("2") do |config|
   config.vm.box = "generic/ubuntu2004"
 
   # Master node
