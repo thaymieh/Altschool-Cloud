@@ -38,7 +38,9 @@ above is the vagrant file configuration
 ```bash
   vagrant up
 ```
+## Screenshot 1
 
+![Alt text](Images/vagrantup.png)
 
 ## Task 2
 
@@ -54,6 +56,17 @@ vagrant ssh master -c "sudo useradd -m -s /bin/bash altschool"
 vagrant ssh master -c "sudo usermod -aG sudo altschool"
 vagrant ssh master -c "echo 'altschool:mynewpassword' | sudo chpasswd"
 ```
+
+## Screenshot 2
+
+![Alt text](Images/task2.png)
+## Screenshot 2.1
+
+![Alt text](Images/task2-1.png)
+
+## Screenshot 3
+
+![Alt text](Images/task2-2.png)
 
 ## Task 3
 
