@@ -66,7 +66,7 @@ vagrant ssh master -c "echo 'altschool:mynewpassword' | sudo chpasswd"
 
 ## Screenshot 3
 
-![Alt text](Images/task2-2.png)
+![Alt text](Images/task2-3.png)
 
 ## Task 3
 
@@ -102,6 +102,16 @@ vagrant ssh master -c "sudo chown -R altschool:altschool /home/altschool/.ssh &&
 vagrant ssh master -c "sudo -u altschool ssh altschool@slave"
 
 ```
+## Screenshot 3
+
+![Alt text](Images/task3.png)
+## Screenshot 3.1
+
+![Alt text](Images/task3-1.png)
+
+## Screenshot 3.2
+
+![Alt text](Images/task3-3.png)
 
 
 
@@ -128,6 +138,15 @@ vagrant ssh master -c "sudo -u altschool scp -o StrictHostKeyChecking=no /mnt/al
 
 ```
 
+## Screenshot 4
+
+![Alt text](Images/task4.png)
+## Screenshot 4.1
+
+![Alt text](Images/task4-1.png)
+
+
+
 ## Task 5
 
 Process Monitoring:
@@ -136,6 +155,12 @@ The Master node should display an overview of the Linux process management, show
 ```bash
   vagrant ssh master -c "htop"
 ```
+## Screenshot 5
+
+![Alt text](Images/task5.png)
+
+
+
 
 ## Task 6
 
@@ -238,11 +263,24 @@ vagrant ssh slave -c "ip addr show eth0 | grep 'inet ' | awk '{print \$2}' | cut
 
 ```
 
+The host file of the machine(/etc/hosts) was also edited to create a DNS to access the apache web and php on the browser
 
 
+## Screenshot 6
+
+![Alt text](Images/task6.png)
+## Screenshot 6.1
+
+![Alt text](Images/task6-2.png)
+
+## Screenshot 6.2
+
+![Alt text](Images/task6-3.png)
 
 
+## Screenshot 6.3
 
+![Alt text](Images/task6-4.png)
 
 
 
