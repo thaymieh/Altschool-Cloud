@@ -141,6 +141,7 @@ vagrant ssh master -c "sudo -u altschool scp -o StrictHostKeyChecking=no /mnt/al
 ## Screenshot 4
 
 ![Alt text](Images/task4.png)
+
 ## Screenshot 4.1
 
 ![Alt text](Images/task4-1.png)
@@ -269,6 +270,7 @@ The host file of the machine(/etc/hosts) was also edited to create a DNS to acce
 ## Screenshot 6
 
 ![Alt text](Images/task6.png)
+
 ## Screenshot 6.1
 
 ![Alt text](Images/task6-2.png)
