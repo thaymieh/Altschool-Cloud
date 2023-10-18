@@ -2,7 +2,7 @@
 
 
 
-## Name of md file : SeccondAssignment
+## Name of md file : SecondAssignment
 
 
 
