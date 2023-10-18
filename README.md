@@ -1,11 +1,11 @@
-## name of md file : Firstassignment
+## Name of md file : Firstassignment
 
 
 
-## name of md file : SeccondAssignment
+## Name of md file : SeccondAssignment
 
 
 
 
-## name of md file : ThirdAssignment
+## Name of md file : ThirdAssignment
 
