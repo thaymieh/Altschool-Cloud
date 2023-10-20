@@ -1,0 +1,31 @@
+---
+- name: Deploy LAMP stack on Master and verify PHP application
+  hosts: slaves
+  become: yes
+
+  tasks:
+    - name: Upload and execute the Bash script on Master
+      script: /home/altschool/scripts/deploylamp.sh
+      delegate_to: "{{ groups['masters'][0] }}"
+      register: script_result
+
+    - name: Display script result on Master
+      debug:
+        var: script_result.stdout_lines
+      when: script_result is defined and script_result.stdout_lines | length > 0
+
+    - name: Display script error on Master
+      debug:
+        var: script_result.stderr_lines
+      when: script_result is defined and script_result.stderr_lines | length > 0
+
+    - name: Verify PHP application on Master
+      uri:
+        url: "http://{{ groups['masters'][0] }}/laravel"
+        status_code: 200
+      register: result
+
+    - name: Display verification result on Master
+      debug:
+        var: result
+"

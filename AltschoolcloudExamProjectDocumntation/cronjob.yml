@@ -1,0 +1,16 @@
+# deploy_cronjob.yml
+---
+- name: Create Cron Job to Check Server Uptime
+  hosts: slave
+  become: true
+  become_user: altschool
+
+  tasks:
+    - name: Create Cron Job to Check Server Uptime
+      cron:
+        name: "Check_Server_Uptime"
+        job: "uptime >> /home/altschool/logs/uptime.log"
+        minute: 0
+        hour: 0
+        state: present
+      delegate_to: "{{ groups['master'][0] }}"
