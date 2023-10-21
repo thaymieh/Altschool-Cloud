@@ -86,6 +86,10 @@ vagrant ssh slave -c "sudo chown -R altschool:altschool /home/altschool/.ssh && 
 
 ```
 
+## Screenshot 1
+
+![Alt text](AltschoolcloudExamProjectDocumntation/exam2.png)
+
 ## create directory
 
 ```bash
@@ -271,7 +275,21 @@ vagrant ssh slave -c "sudo -u altschool ansible-playbook -i /home/altschool/scri
 vagrant ssh slave -c "sudo -u altschool ansible-playbook -i /home/altschool/scripts/inventory.ini /home/altschool/scripts/cronjob.yml --ask-become-pass"
 
 ```
+## Screenshot 2
 
+![Alt text](AltschoolcloudExamProjectDocumntation/exam3.png)
+
+## Screenshot 3
+
+![Alt text](AltschoolcloudExamProjectDocumntation/exam4.png)
+
+## Screenshot 4
+
+![Alt text](AltschoolcloudExamProjectDocumntation/exam5.png)
+
+## Screenshot 5
+
+![Alt text](AltschoolcloudExamProjectDocumntation/exam2.png)
 
 
 
