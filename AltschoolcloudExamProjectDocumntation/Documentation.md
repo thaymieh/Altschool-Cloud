@@ -1,3 +1,12 @@
+## pre-requisites
+
+user - altschool
+password - mynewpassword
+host names - master and slave
+master ip - 192.168.27.15
+slave ip - 192.168.27.20
+
+
 ## Create vagrantfile
 
 ```bash
