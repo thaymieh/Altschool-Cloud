@@ -1,3 +1,4 @@
+#!/bin/bash
 # Provisioning Script
 
 # Bring up Vagrant environment
@@ -44,12 +45,18 @@ vagrant ssh slave -c "sudo chown -R altschool:altschool /home/altschool/.ssh && 
 vagrant ssh master -c 'sudo -u altschool mkdir -p /home/altschool/scripts /home/altschool/logs'
 vagrant ssh slave -c 'sudo -u altschool mkdir -p /home/altschool/scripts /home/altschool/logs'
 
-# Enter the master node and create the deployment script
+
+
+# enter the master node and append shebang
 vagrant ssh master
+
 sudo su altschool
+
 cd ..
 cd altschool/scripts/
+
 echo '#!/bin/bash' > deploylamp.sh
+
 
 
 # Deploy LAMP stack script
