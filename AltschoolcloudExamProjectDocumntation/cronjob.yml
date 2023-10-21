@@ -8,9 +8,9 @@
   tasks:
     - name: Create Cron Job to Check Server Uptime
       cron:
-        name: "Check_Server_Uptime"
-        job: "uptime >> /home/altschool/logs/uptime.log"
+        name: 'Check_Server_Uptime'
+        job: 'uptime >> /home/altschool/logs/uptime.log'
         minute: 0
         hour: 0
         state: present
-      delegate_to: "{{ groups['master'][0] }}"
+      delegate_to: master
