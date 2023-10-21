@@ -1,12 +1,13 @@
+# deploy_on_master.yml
 ---
 - name: Deploy LAMP stack on Master and verify PHP application
-  hosts: slaves
+  hosts: slave
   become: yes
 
   tasks:
     - name: Upload and execute the Bash script on Master
       script: /home/altschool/scripts/deploylamp.sh
-      delegate_to: "{{ groups['masters'][0] }}"
+      delegate_to: master
       register: script_result
 
     - name: Display script result on Master
@@ -21,11 +22,10 @@
 
     - name: Verify PHP application on Master
       uri:
-        url: "http://{{ groups['masters'][0] }}/laravel"
+        url: "http://master/laravel"
         status_code: 200
       register: result
 
     - name: Display verification result on Master
       debug:
         var: result
-"
