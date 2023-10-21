@@ -88,7 +88,7 @@ vagrant ssh slave -c "sudo chown -R altschool:altschool /home/altschool/.ssh && 
 
 ## Screenshot 1
 
-![Alt text](AltschoolcloudExamProjectDocumntation/exam2.png)
+![Alt text](AltschoolcloudExamProjectDocumntation/images/exam2.png)
 
 ## create directory
 
@@ -277,15 +277,15 @@ vagrant ssh slave -c "sudo -u altschool ansible-playbook -i /home/altschool/scri
 ```
 ## Screenshot 2
 
-![Alt text](AltschoolcloudExamProjectDocumntation/exam3.png)
+![Alt text](AltschoolcloudExamProjectDocumntation/images/exam3.png)
 
 ## Screenshot 3
 
-![Alt text](AltschoolcloudExamProjectDocumntation/exam4.png)
+![Alt text](AltschoolcloudExamProjectDocumntation/images/exam4.png)
 
 ## Screenshot 4
 
-![Alt text](AltschoolcloudExamProjectDocumntation/exam5.png)
+![Alt text](AltschoolcloudExamProjectDocumntation/images/exam5.png)
 
 ## Screenshot 5
 
