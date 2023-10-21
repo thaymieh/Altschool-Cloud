@@ -86,9 +86,9 @@ vagrant ssh slave -c "sudo chown -R altschool:altschool /home/altschool/.ssh && 
 
 ```
 
-## Screenshot 1
+## Screenshot 1 confirming passwordless ssh between nodes
 
-![Alt text](AltschoolcloudExamProjectDocumntation/images/exam2.png)
+![Alt text](images/exam2.png)
 
 ## create directory
 
@@ -275,17 +275,17 @@ vagrant ssh slave -c "sudo -u altschool ansible-playbook -i /home/altschool/scri
 vagrant ssh slave -c "sudo -u altschool ansible-playbook -i /home/altschool/scripts/inventory.ini /home/altschool/scripts/cronjob.yml --ask-become-pass"
 
 ```
-## Screenshot 2
+## Screenshot 2 of ansible playbook deploy.yml sucessfully running
 
-![Alt text](AltschoolcloudExamProjectDocumntation/images/exam3.png)
+![Alt text](images/exam3.png)
 
-## Screenshot 3
+## Screenshot 3 verifying page accessibility
 
-![Alt text](AltschoolcloudExamProjectDocumntation/images/exam4.png)
+![Alt text](images/exam4.png)
 
-## Screenshot 4
+## Screenshot 4 ansible playbook cronjob.yml successfully running
 
-![Alt text](AltschoolcloudExamProjectDocumntation/images/exam5.png)
+![Alt text](images/exam5.png)
 
 ## Screenshot 5
 
