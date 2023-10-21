@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     slave.vm.network :forwarded_port, guest: 22, host: 2223
   end
 end
- ````
+ ```
 
 ## spin up the servers
 
@@ -49,64 +49,61 @@ vagrant ssh slave -c "echo 'altschool:mynewpassword' | sudo chpasswd"
 
 ## create passwordless ssh: master to ssh to slave and vice versa,becasue there will be file sharing happening
 
-````bash
-# Generate SSH key pair on master
+```bash
+# SSH key setup between master and slave
+# Generate SSH key on master
 vagrant ssh master -c "sudo -u altschool ssh-keygen -t rsa"
 
-# Add slave's IP to master's /etc/hosts
+# Update /etc/hosts on master to include slave
 vagrant ssh master -c "echo '192.168.27.20 slave' | sudo tee -a /etc/hosts"
 
 # Copy public key from master to slave
-public_key=$(vagrant ssh master -c "sudo -u altschool cat /home/altschool/.ssh/id_rsa.pub")
-vagrant ssh slave -c "sudo -u altschool sh -c 'echo \"$public_key\" >> /home/altschool/.ssh/authorized_keys'"
+vagrant ssh master -c "sudo -u altschool ssh-copy-id altschool@192.168.27.20"
 
-# Set proper permissions on master's SSH directory
-vagrant ssh master -c "sudo chown -R altschool:altschool /home/altschool/.ssh && \
-                      sudo chmod 700 /home/altschool/.ssh && \
-                      sudo chmod 600 /home/altschool/.ssh/id_rsa"
+# Set proper permissions on master
+vagrant ssh master -c "sudo chown -R altschool:altschool /home/altschool/.ssh && sudo chmod 700 /home/altschool/.ssh && sudo chmod 600 /home/altschool/.ssh/id_rsa"
 
-# Test SSH connection from master to slave
-vagrant ssh master -c "sudo -u altschool ssh altschool@192.168.27.20"
-
-exit
-
-
-# Generate SSH key pair on slave
+# Generate SSH key on slave
 vagrant ssh slave -c "sudo -u altschool ssh-keygen -t rsa"
 
-# Add slave's IP to master's /etc/hosts
+# Update /etc/hosts on slave to include master
 vagrant ssh slave -c "echo '192.168.27.15 master' | sudo tee -a /etc/hosts"
 
-# Copy public key from master to slave
-public_key=$(vagrant ssh slave -c "sudo -u altschool cat /home/altschool/.ssh/id_rsa.pub")
-vagrant ssh master -c "sudo -u altschool sh -c 'echo \"$public_key\" >> /home/altschool/.ssh/authorized_keys'"
+# Copy public key from slave to master
+vagrant ssh slave -c "sudo -u altschool ssh-copy-id altschool@192.168.27.15"
 
-# Set proper permissions on master's SSH directory
-vagrant ssh slave -c "sudo chown -R altschool:altschool /home/altschool/.ssh && \
-                      sudo chmod 700 /home/altschool/.ssh && \
-                      sudo chmod 600 /home/altschool/.ssh/id_rsa"
+# Set proper permissions on slave
+vagrant ssh slave -c "sudo chown -R altschool:altschool /home/altschool/.ssh && sudo chmod 700 /home/altschool/.ssh && sudo chmod 600 /home/altschool/.ssh/id_rsa"
 
-# Test SSH connection from master to slave
-vagrant ssh slave -c "sudo -u altschool ssh altschool@192.168.27.15"
-
-
-exit
 ```
 
 ## create directory
 
 ```bash
-# Directory setup
+# Directory setup on both nodes
 vagrant ssh master -c 'sudo -u altschool mkdir -p /home/altschool/scripts /home/altschool/logs'
 vagrant ssh slave -c 'sudo -u altschool mkdir -p /home/altschool/scripts /home/altschool/logs'
 ```
 
-## write the deloy lamp stack into a file called deploylamp.sh
+## append shebang
 
 ```bash
+# Enter the master node and create the deployment script
+vagrant ssh master
+sudo su altschool
+cd ..
+cd altschool/scripts/
+echo '#!/bin/bash' > deploylamp.sh
+```
+
+
+## write the deploy lamp stack into a file called deploylamp.sh
+
+```bash
+
 # Deploy LAMP stack script
 deploy_script_content="
-#!/bin/bash
+
 # Update package information
 sudo apt-get update
 
@@ -151,4 +148,119 @@ echo \"LAMP stack deployed successfully.\"
 
 # Append deploy script content to deploylamp.sh
 vagrant ssh master -c 'sudo -u altschool tee -a /home/altschool/scripts/deploylamp.sh' <<< "$deploy_script_content"
+
 ```
+
+## copy deploylamp.sh to slave node
+
+```bash
+# Copy deploylamp.sh to the slave node
+vagrant ssh master -c "sudo -u altschool scp -o StrictHostKeyChecking=no /home/altschool/scripts/deploylamp.sh altschool@slave:/home/altschool/scripts/"
+
+```
+
+## install ansible on slave node
+```bash
+# Install Ansible on the slave node
+vagrant ssh slave -c "sudo -u altschool sudo apt-get update && sudo apt-get install ansible -y"
+```
+
+## creating ansible inventory.ini
+```bash
+# Ansible inventory setup
+inventory_content="
+# inventory.ini
+[master]
+master ansible_ssh_host=192.168.27.15 ansible_ssh_user=altschool
+
+[slave]
+slave ansible_ssh_host=192.168.27.20 ansible_ssh_user=altschool
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+"
+# Append inventory content to inventory.ini on the slave node
+vagrant ssh slave -c 'sudo -u altschool tee -a /home/altschool/scripts/inventory.ini' <<< "$inventory_content"
+```
+
+## creating ansible deploy.yml to deploy lamp stack on master node
+
+```bash
+# Ansible playbook setup for deployment
+ansible_playbook_content="
+# deploy_on_master.yml
+---
+- name: Deploy LAMP stack on Master and verify PHP application
+  hosts: slave
+  become: yes
+
+  tasks:
+    - name: Upload and execute the Bash script on Master
+      script: /home/altschool/scripts/deploylamp.sh
+      delegate_to: master
+      register: script_result
+
+    - name: Display script result on Master
+      debug:
+        var: script_result.stdout_lines
+      when: script_result is defined and script_result.stdout_lines | length > 0
+
+    - name: Display script error on Master
+      debug:
+        var: script_result.stderr_lines
+      when: script_result is defined and script_result.stderr_lines | length > 0
+
+    - name: Verify PHP application on Master
+      uri:
+        url: "http://master/laravel"
+        status_code: 200
+      register: result
+
+    - name: Display verification result on Master
+      debug:
+        var: result
+"
+
+# Append Ansible playbook content to deploy.yml on the slave node
+vagrant ssh slave -c 'sudo -u altschool tee -a /home/altschool/scripts/deploy.yml' <<< "$ansible_playbook_content"
+```
+
+## creating cronjob to check server uptime
+```bash
+# Ansible playbook setup for cron job
+cronjob_content="
+# deploy_cronjob.yml
+---
+- name: Create Cron Job to Check Server Uptime
+  hosts: slave
+  become: true
+  become_user: altschool
+
+  tasks:
+    - name: Create Cron Job to Check Server Uptime
+      cron:
+        name: 'Check_Server_Uptime'
+        job: 'uptime >> /home/altschool/logs/uptime.log'
+        minute: 0
+        hour: 0
+        state: present
+      delegate_to: master
+"
+
+# Append Ansible cronjob content to cronjob.yml on the slave node
+vagrant ssh slave -c 'sudo -u altschool tee -a /home/altschool/scripts/cronjob.yml' <<< "$cronjob_content"
+```
+
+## Execution of ansible playbook
+
+```bash
+
+# Run Ansible playbook for deployment
+vagrant ssh slave -c "sudo -u altschool ansible-playbook -i /home/altschool/scripts/inventory.ini /home/altschool/scripts/deploy.yml --ask-become-pass"
+
+# Run Ansible playbook for cron job
+vagrant ssh slave -c "sudo -u altschool ansible-playbook -i /home/altschool/scripts/inventory.ini /home/altschool/scripts/cronjob.yml --ask-become-pass"
+
+```
+
+
