@@ -10,7 +10,6 @@
       cron:
         name: 'Check_Server_Uptime'
         job: 'uptime >> /home/altschool/logs/uptime.log'
-        minute: 0
-        hour: 0
+        special_time: daily
         state: present
       delegate_to: master
