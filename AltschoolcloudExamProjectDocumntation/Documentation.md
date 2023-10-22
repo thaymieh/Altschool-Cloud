@@ -254,8 +254,7 @@ cronjob_content="
       cron:
         name: 'Check_Server_Uptime'
         job: 'uptime >> /home/altschool/logs/uptime.log'
-        minute: 0
-        hour: 0
+        special_time: daily
         state: present
       delegate_to: master
 "
@@ -289,7 +288,7 @@ vagrant ssh slave -c "sudo -u altschool ansible-playbook -i /home/altschool/scri
 
 ## Screenshot 5
 
-![Alt text](AltschoolcloudExamProjectDocumntation/exam2.png)
+![Alt text](images/exam6.png)
 
 
 
